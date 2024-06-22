@@ -12,6 +12,8 @@ def pokemon(request):
 def contacto(request):
     return render(request, 'Contactanos.html')
 
+def producto(request):
+    return render(request,'Producto.html')
 
 def inicio(request):
     return render(request,'Inicio.html')

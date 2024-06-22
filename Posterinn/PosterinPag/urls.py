@@ -8,6 +8,6 @@ urlpatterns = [
     path('galeria', tienda, name='galeria'),
     path('iniciosesion', inicio_sesion, name='iniciosesion'),
     path('pokemon',pokemon,name="pokemon"),
-    path('contacto',contacto,name="contacto")
-
+    path('contacto',contacto,name="contacto"),
+    path('producto',producto,name="producto")
 ]
