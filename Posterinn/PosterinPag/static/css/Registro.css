@@ -1,0 +1,221 @@
+.cuerpo{
+    background: #a800eb;
+    background: linear-gradient(to right, #c71485, #6b6bff);
+    font-family: "Anybody", sans-serif;
+}
+.imagen{
+    background-image: url(/PosterinPag/static/img/LogoPosterin.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 20px 0 0 20px;
+}
+
+.titulo{
+    font-size: 50px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.container{
+    background: #ffffff;
+    border-radius: 20px;
+}
+
+#pie{
+    font-style: italic;
+    margin:8px;
+}
+
+footer{
+    margin-top: 20px;
+    background-color: rgb(33, 33, 33);
+    color: white;
+    padding: 7px;
+    }
+
+/*FORMULARIO*/
+
+.formulario h2::after{
+    content: '';
+    width: 30px;
+    height: 4px;
+    border-radius: 5px;
+    background: #ff18b2;
+    position: absolute;
+    bottom: 5px;
+    left: 45%;
+}
+
+.form-control:hover{
+	background-color: #6b6bff;
+    transition: background-color 0.75s;
+}
+
+.form-control::placeholder{
+    font-size: 20px;
+    transition: all 0.60s ease;
+}
+
+/*-------- LABELS ---------*/
+
+.form-label{
+    display: block;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/*-------- INPUTS ---------*/
+
+.formulario input{
+    height: 45px;
+    display: inline-block;
+    position: relative;
+	width: 100%;
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    background: #f0f0f0;
+    font-size: 20px;
+    border: 2px solid rgba(110, 11, 240, 0.404);
+    border-radius: 5px;
+    transition: all 0.25s ease;
+}
+
+/*MENSAJE ERROR Y EXITO*/
+
+.mensajeError{
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: -15px;
+    margin-bottom: 0px;
+    display: none;
+}
+
+.mensajeError-activo{
+    display: block;
+}
+
+.formularioMensaje{
+   height: 50px;
+   background: #f66060;
+   padding: 5px 15px;
+   border-radius: 3px;
+   display: none;
+}
+
+.formularioMensaje-activo{
+    display: block;
+}
+
+.mensajeExito{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #119200;
+    display: none;
+}
+
+.mensajeExito-activo{
+    display: block;
+}
+
+
+/*ICONOS*/
+.formularioValidacion-estado{
+   position: relative;
+   left: 530px;
+   bottom: 33px;
+   font-size: 16px;
+   z-index: 100;
+   opacity: 0;
+}
+
+/*SELECCION*/
+.content-select{
+	position: relative;
+}
+
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.content-select select{
+	display: inline-block;
+	width: 100%;
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    background: #f0f0f0;
+    font-size: 20px;
+    border: 2px solid rgba(110, 11, 240, 0.404);
+    border-radius: 5px;
+    transition: all 0.25s ease;
+}
+
+.content-select select:hover{
+    background: #6b6bff ;
+    transition: background-color 0.75s;
+}
+
+.content-select i{
+	position: absolute;
+    right: 20px;
+    top: calc(50% - 13px);
+    width: 16px;
+	height: 16px;
+	display: block;
+    border-left:4px solid #000000;
+    border-bottom:4px solid #000000;
+    transform: rotate(-45deg); /* Giramos el cuadrado */
+    transition: all 0.25s ease;
+}
+
+.content-select:hover i{
+	margin-top: 3px;
+}
+
+/*BOTON*/
+
+.boton button{
+    background: #c71485;
+    border: none;
+    border-radius: 5px;
+    height: 45px;
+    color: antiquewhite;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.boton button:hover{
+    background: #6b6bff;
+    transition: background 0.75s;
+}
+
+
+
+
+/*ESTILOS PARA VALIDACIÓN*/
+.formulario-correcto .formularioValidacion-estado{
+    color: #1ed12d;
+    opacity: 1;
+}
+.formulario-incorrecto .form-label{
+    color: #bb2929;
+}
+.formulario-incorrecto .formularioValidacion-estado{
+    color: #bb2929; 
+    opacity: 1;
+}
+.formulario-incorrecto input{
+    border: 3px solid #bb2929;
+}
+
+.probar{
+    color: #c71485;
+}
