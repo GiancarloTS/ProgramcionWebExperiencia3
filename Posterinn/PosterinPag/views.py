@@ -3,7 +3,65 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from .forms import RegistroUsuario
+from .models import Producto
+from . import cart
+import datetime
+
+
 # Create your views here.
+
+
+# carrito de compra funciones
+
+def listado_productos(request):
+        productos=Producto.objects.all() # select * from productos 
+        context = {
+            'productos' : productos
+        }
+        return render(request, 'GaleriaDeFotos.html',context)
+
+def agregar(request,id):
+    carrito_compra= cart.carrito(request)
+    producto = Producto.objects.get(codigo=id)
+    carrito_compra.añadir_producto(producto=producto)
+    return redirect('tienda')
+
+def reducir(request, id):
+        carrito_compra= cart.carrito(request)
+        producto = Producto.objects.get(codigo=id)
+        carrito_compra.quitar(producto=producto)
+        return redirect('tienda')
+def eliminar(request, id):
+        carrito_compra= cart.carrito(request)
+        producto = Producto.objects.get(codigo=id)
+        carrito_compra.eliminar(producto=producto)
+        return redirect('tienda')
+
+def generarboleta(request):
+    precio_total=0
+    for key, value in request.session['carrito'].items():
+        precio_total = precio_total + int(value['precio']) * int(value['cantidad'])
+        boletaV = boleta(total = precio_total)
+        boletaV.save()
+    productos = []
+    for key, value in request.session['carrito'].items():
+            producto = Producto.objects.get(codigo = value['codigo'])
+            cant = value['cantidad']
+            subtotal = cant * int(value['precio'])
+            detalle = detalle_boleta(id = boletaV, id_producto = producto, cantidad = cant, subtotal = subtotal)
+            detalle.save()
+            productos.append(detalle)
+    datos={
+        'productos':productos,
+        'fecha':boletaV.fechaCompra,
+        'total': boletaV.total
+    }
+    request.session['boleta'] = boletaV.id
+    carrito = cart.carrito(request)
+    carrito.limpiar()
+    return render(request, 'boleta.html',datos)
+    # ----------------------------------------------------
+
 
 
 def pokemon(request):
@@ -24,8 +82,6 @@ def quienes(request):
 def novedades(request):
     return render(request,'Novedades.html')
 
-def tienda(request):
-    return render(request, 'GaleriaDeFotos.html')
 
 def registro(request):
     data={

@@ -1,3 +1,4 @@
+
 {% load static %}
 
 
@@ -73,78 +74,112 @@
 
         <center>
 
-        <h1>Galeria De Fotos Posterin</h1>
-        <br>
-        <br>
-
-
-        
-
-
+        <h1 style="margin-top:40px">Tienda  Posterin</h1>
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="contenedor">
-          <div class="container">
-            <button type="button" class="btn btn-lg" data-bs-toggle="popover" data-bs-title="Poster El niño y la Garza" data-bs-content="Sin Marco: $3500 Con Marco: $7000">
-              <img src="https://imgbb.host/images/QSdat.jpeg" class="img-fluid medium-image" style="max-width: 50%;">
-            </button>
-          </div>
+      
+      
+        
+        <div class="container  D-flex  flex-wrap ">
+                {% for x in productos  %}
                 
-          <div class="container">
-            <button type="button" class="btn btn-lg" data-bs-toggle="popover" data-bs-title="Poster Spiderman ACROSS THE SPIDER-VERSE" data-bs-content="Sin Marco: $3500 Con Marco: $7000">
-              <img src="https://imgbb.host/images/QD3Te.png" class="img-fluid medium-image" style="max-width: 50%;">
-            </button>
-          </div>
-        </div>
-        
-        <div class="contenedor">
-          <div class="container">
-            <button type="button" class="btn btn-lg" data-bs-toggle="popover" data-bs-title="Poster Rolling Stone - Portada Gustavo Cerati" data-bs-content="Sin Marco: $3500 Con Marco: $7000">
-              <img src="https://imgbb.host/images/QDMxQ.png" class="img-fluid medium-image" style="max-width: 50%;">
-            </button>
-          </div>
-        
-          <div class="container">
-            <button type="button" class="btn btn-lg" data-bs-toggle="popover" data-bs-title="Poster Deftones" data-bs-content="Sin Marco: $3500 Con Marco: $7000">
-              <img src="https://imgbb.host/images/QDK3P.png" class="img-fluid medium-image" style="max-width: 50%;">
-            </button>
-          </div>
-        </div>
-        
-        <div class="contenedor">
-          <div class="container">
-            <button type="button" class="btn btn-lg" data-bs-toggle="popover" data-bs-title="Poster Misa Amane" data-bs-content="Sin Marco: $3500 Con Marco: $7000">
-              <img src="https://imgbb.host/images/QDpPu.png" class="img-fluid medium-image" style="max-width: 50%;">
-            </button>
-          </div>
-        
-          <div class="container">
-            <button type="button" class="btn btn-lg" data-bs-toggle="popover" data-bs-title="Totebag Sukuna - Jujutsu Kaisen" data-bs-content="Totebag Sukuna de Jujutsu Kaisen de excelente calidad, llevala contigo y extiende tu dominio! $8500">
-              <img src="https://imgbb.host/images/QDkpz.png" class="img-fluid medium-image" style="max-width: 50%;">
-            </button>
-          </div>
-        </div>
-        
+                 
+                      
+                        <button type="button" class="btn" style="">
+                          <img src="media/{{ x.imagen }}" style="width:300px; ">
+                          <h3>{{ x.nombre }}</h3>
+                           <h5>Categoria : {{ x.categoria}}</h5>
+                           <span >Descripcion : {{x.descripcion}} </span>
+                           <h2>Precio : {{x.precio }}$ </h2>
+                           <h2>cod : {{x.codigo }} </h2>
+                         
+                           <a  href="{% url 'agregar' x.codigo %}">Agregar al carrito</a>
+                        </button>
+                        
+                      
+                     
+                    
+                      
+                {% endfor %}
+              </div>
+           
+
+
+              <div class="alert alert-light" role="alert">
+                <h5>Carrito</h5>
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Stock</th>
+                      <th scope="col">total</th>
+                      <th scope="col">elimnar</th>
+                    </tr>
+                  </thead>
+                  {% if request.session.carrito.items %}
+                    {% for key, value in request.session.carrito.items %}  
+                      <tr>
+                      <td style="font-size:13px">{{ value.codigo }}</td>
+                      <td style="font-size:13px">{{ value.nombre }}</td>
+                      <td style="font-size:13px">{{ value.precio}}
+                      <td style="font-size:13px">{{ value.cantidad}}
+                        <a href="{% url 'agregar' value.codigo %}" class="badge btn btn-primary">+</a>
+                        <a href="{% url 'reducir'  value.codigo %}" class="badge btn btn-warning">-</a>
+                        <td style="font-size:13px">{{ value.stock}}</td>
+                        <td style="font-size:13px">{{ value.total}}</td>
+                        
+                          <td style="font-size:13px"><a href="{% url 'eliminar' value.codigo %}">hola<a></td>
+                      
+                      </td>
+                      </tr>
+                    
+                    {% endfor %}
+                  {% else %}
+                    <tr>
+                        <td colspan="6">
+                            <div class="alert alert-info text-center" style="font-weight: bold;">Sin Productos</div>
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+                {% comment %} <table class="table table-striped table-hover table-bordered border-primary">
+                  <thead>
+                    <tr>
+
+                      <th scope="col">subtotal</th>
+
+                    </tr>
+                  </thead>
+                  {% if request.session.carrito.items %}
+                    {% for key, value in request.session.carrito.items %}  
+                      <tr>
+                      <td style="font-size:13px"></td>
+                      </tr>
+                    
+                    {% endfor %}
+                  {% else %}
+                    <tr>
+                        <td >
+                        -----------------------------------
+                   
+                    </tr>
+                  
+                    {% endif %}
+                </table> {% endcomment %}
+                <button type="button" class="btn btn-primary">comprar</button>
+                <a href=" {% url 'generarboleta' %}">Comrpar</a>
+              </div>
+
+
+
+
+
+
+
+       
         
       </center>
 

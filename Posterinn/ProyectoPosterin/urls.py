@@ -21,9 +21,7 @@ from PosterinPag import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('PosterinPag.urls')),
-    path('', views.inicio , name='inicio'),#CAMIAR CON EL INICIO DE YAN
     path('Registro/', views.registro, name='registro'),
-    path('Tienda/', views.tienda, name='tienda'),
     path('cerrar_sesion/', views.cerrar_sesion, name='cerrarsesion'),
     path('inicio_sesion/', views.inicio_sesion, name='iniciosesion')
 ]
