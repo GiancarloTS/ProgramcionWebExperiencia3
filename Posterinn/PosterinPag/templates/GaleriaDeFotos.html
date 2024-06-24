@@ -39,12 +39,12 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'novedades' %}">Novedades</a>
             </li>
-            
-            {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link active" href="{% url 'tienda' %}">
                 Tienda</a>
             </li>
+            {% if user.is_authenticated %}
+           
             <li class="nav-item">
               <a class="nav-link" href="{%  url 'contacto' %}"
                 >Contactanos</a
@@ -97,23 +97,28 @@
                            <h2>Precio : {{x.precio }}$ </h2>
                            <h2>cod : {{x.codigo }} </h2>
                           
-                           {% if x.existencias == 0 %}
-                             
-                              <h4>Sin Stock</h4>
-                           {% else %}
-                            <a  href="{% url 'agregar' x.codigo %}" style="font-size:40px,   display: block;
-                      width: 115px;
-                      height: 25px;
-                      background: #ff8234;
-                      padding: 10px;
-                      text-align: center;
-                      border-radius: 5px;
-                      color: white;
-                      font-weight: bold;
-                      line-height: 25px;
-                      text-decoration: none;
-                      ">Agregar al carrito</a>
-                           {% endif %}
+
+
+
+                           {% if user.is_authenticated %}
+                              {% if x.existencias == 0 %}
+                                
+                                  <h4>Sin Stock</h4>
+                              {% else %}
+                                <a  href="{% url 'agregar' x.codigo %}" style="font-size:40px,   display: block;
+                                    width: 115px;
+                                    height: 25px;
+                                    background: #ff8234;
+                                    padding: 10px;
+                                    text-align: center;
+                                    border-radius: 5px;
+                                    color: white;
+                                    font-weight: bold;
+                                    line-height: 25px;
+                                    text-decoration: none;
+                                    ">Agregar al carrito</a>
+                              {% endif %}
+                            {% endif %}
                         </button>
                         
                         
@@ -123,7 +128,7 @@
                 {% endfor %}
               </div>
            
-
+              {% if user.is_authenticated %}
 
               <div class="alert alert-light" role="alert" style="margin-top: 20px;">
                 <h5>Carrito</h5>
@@ -192,7 +197,7 @@
                     <h4>Ingrese productos</h4>
                     {% endif %}
               </div>
-
+              {% endif %}
 
 
 
