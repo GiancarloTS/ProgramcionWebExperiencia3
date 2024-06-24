@@ -1,14 +1,25 @@
 from django.contrib import admin
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
+
+
 
 from PosterinPag import cart
 
-from . import views
+from . import views 
+from PosterinPag.views import * 
 
 
 urlpatterns = [
+    
+  
+    path('crear/', crear, name="crear"),
+    path('eliminar/<id>', eliminar, name="eliminar"),
+    path('eliminarproducto/<id>', eliminarproducto, name="eliminarproducto"),
+    path('modificar/<id>', modificar, name="modificar"),
+    path('registrar/', registrar, name="registrar"),
+    path('mostrar/',mostrar, name="mostrar"),
+    
+    path('adminproducto', views.productos, name='productos'),
     path('inicio', views.inicio, name='inicio'),
     path('quienes', views.quienes, name='quienes'),
     path('registro', views.registro, name='registro'),
@@ -23,4 +34,4 @@ urlpatterns = [
     path('eliminar/<id>',views.eliminar,name="eliminar"),
     path('generarboleta/',views.generarboleta,name="generarboleta")
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

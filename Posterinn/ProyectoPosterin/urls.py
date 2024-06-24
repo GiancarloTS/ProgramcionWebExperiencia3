@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from PosterinPag import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +26,4 @@ urlpatterns = [
     path('Registro/', views.registro, name='registro'),
     path('cerrar_sesion/', views.cerrar_sesion, name='cerrarsesion'),
     path('inicio_sesion/', views.inicio_sesion, name='iniciosesion')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
