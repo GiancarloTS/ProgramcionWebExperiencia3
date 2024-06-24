@@ -16,6 +16,12 @@ class RegistroUsuario(UserCreationForm):
             'password1' : 'Contraseña',
             'password2' : 'Confirme Contraseña'
         }
+
+class FormularioUsuario(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name' , 'last_name']
+
         
 class ProductoForm(forms.ModelForm):
     class Meta:

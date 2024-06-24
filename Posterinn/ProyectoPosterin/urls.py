@@ -23,7 +23,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('PosterinPag.urls')),
+    path('', views.inicio , name='inicio'),
     path('Registro/', views.registro, name='registro'),
     path('cerrar_sesion/', views.cerrar_sesion, name='cerrarsesion'),
-    path('inicio_sesion/', views.inicio_sesion, name='iniciosesion')
+    path('inicio_sesion/', views.inicio_sesion, name='iniciosesion'),
+    path('PerfilUsuario/', views.perfil, name='perfil'),
+    path('EdicionPerfil/', views.edicion_perfil, name='edicionperfil'),
+    path('editar/', views.editar_perfil, name='editar')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

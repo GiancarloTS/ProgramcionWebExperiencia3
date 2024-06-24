@@ -127,12 +127,14 @@ def generarboleta(request):
 
 
 
+@login_required
 def pokemon(request):
     return render(request,'Pokemons.html')
 
 def contacto(request):
     return render(request, 'Contactanos.html')
 
+@login_required
 def producto(request):
     return render(request,'Producto.html')
 
@@ -144,6 +146,11 @@ def quienes(request):
 
 def novedades(request):
     return render(request,'Novedades.html')
+
+
+@login_required
+def perfil(request):
+    return render(request, 'PerfilUsuario.html')
 
 
 def registro(request):
@@ -162,25 +169,11 @@ def registro(request):
                 formulario.save()
                 user = authenticate(username=formulario.cleaned_data["username"], 
                 password=formulario.cleaned_data["password1"])
-                '''user = User.objects.create_user(username=request.POST['username'], first_name=request.POST['first_name'],
-                last_name=request.POST['last_name'], email=request.POST['email'], password=request.POST['password1'])'''
                 login(request, user)
                 return redirect('tienda')
             data["form"]=formulario
         return render(request, 'Registro.html', data)
-      
-    """ try:
-        user = User.objects.create_user(username=request.POST['username'], first_name=request.POST['first_name'],
-        last_name=request.POST['last_name'], email=request.POST['email'], password=request.POST['password1'])
-        user.save()
-        login(request, user)
-        return redirect('tienda')
-    except:
-        return render(request, 'Registro.html', {
-            'form': RegistroUsuario,
-            "error": 'Este usuario ya existe'
-        }) """ 
-          
+    
 def inicio_sesion(request):
     if request.method == 'GET':
         return render(request, 'InicioSesion.html',{
@@ -200,9 +193,34 @@ def inicio_sesion(request):
             login(request, user)
             return redirect('tienda')
 
+@login_required
 def cerrar_sesion(request):
     logout(request)
     return redirect('inicio') #CAMBIAR PARA QUE DIRIGA HACIA NUESTRO INICIO
+
+@login_required
+def edicion_perfil(request):
+    user = request.user.id
+    usuario = User.objects.get(id=user)
+    return render(request, 'EdicionPerfil.html', {
+        
+        'user': usuario
+    })
+
+@login_required
+def editar_perfil(request):
+    nombre = request.POST['first_name']
+    apellido = request.POST['last_name']
+
+    user = request.user.id
+    usuario = User.objects.get(id=user)
+    
+    usuario.first_name = nombre
+    usuario.last_name = apellido
+
+    usuario.save()
+    return redirect('perfil')
+
 
 
 

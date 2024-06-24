@@ -23,8 +23,9 @@
   <header>
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
+
         <a class="navbar-brand" href="#">
-          <img src="https://cdn.discordapp.com/attachments/1253551993256153120/1253583612272574514/Proyecto_nuevo.png?ex=66770af7&is=6675b977&hm=5c84642694ade2ef0d986bb971b08130f432e280f2cf1a5a1a3e97a8d687eb73&" alt="Bootstrap" width="34" height="34"
+          <img src="{% static 'img/posterinLogo.jpg' %}" alt="Bootstrap" width="34" height="34"
             class="d-inline-block align-text-center" />
           Posterin
         </a>
@@ -38,34 +39,29 @@
               <a class="nav-link" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="{% url 'quienes' %}">Quienes Somos</a>
+              <a class="nav-link" href="{% url 'quienes' %}">Quienes Somos</a>
             </li>
-        
-            <li class="nav-item">
-              <a class="nav-link active"  href="{% url 'novedades' %}">Novedades</a>
-            </li>
-            
             {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{%  url 'pokemon' %}"
+                >Pokemon</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'novedades' %}">Novedades</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'tienda' %}">
                 Tienda</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{%  url 'contacto' %}"
-                >Contactanos</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{%  url 'pokemon' %}"
-                >Pokemon</a
-              >
+              <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'cerrarsesion' %}">Cerrar sesión</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link " href="{% url 'registro' %}">Registro</a>
+              <a class="nav-link active" href="{% url 'registro' %}">Registro</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'iniciosesion' %}">Inicio sesión</a>

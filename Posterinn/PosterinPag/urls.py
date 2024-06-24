@@ -26,6 +26,11 @@ urlpatterns = [
     path('novedades', views.novedades, name='novedades'),
     path('tienda',views.listado_productos, name='tienda'),
     path('iniciosesion', views.inicio_sesion, name='iniciosesion'),
+
+    path('perfil', perfil, name='perfil'),
+    path('edicionperfil', edicion_perfil, name='edicionperfil'),
+    path('editar/', editar_perfil),
+
     path('pokemon',views.pokemon,name="pokemon"),
     path('contacto',views.contacto,name="contacto"),
     path('producto',views.producto,name="producto"),
