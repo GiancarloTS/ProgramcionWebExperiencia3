@@ -33,7 +33,7 @@
       <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            <img src="https://cdn.discordapp.com/attachments/1253551993256153120/1253583612272574514/Proyecto_nuevo.png?ex=66770af7&is=6675b977&hm=5c84642694ade2ef0d986bb971b08130f432e280f2cf1a5a1a3e97a8d687eb73&" alt="Bootstrap" width="34" height="34"
+            <img src="{% static 'img/LogoPosterin.jpg' %}" alt="Bootstrap" width="34" height="34"
               class="d-inline-block align-text-center" />
             Posterin
           </a>
@@ -68,6 +68,9 @@
                 <a class="nav-link" href="{%  url 'pokemon' %}"
                   >Pokemon</a
                 >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'cerrarsesion' %}">Cerrar sesión</a>

@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img src="https://cdn.discordapp.com/attachments/1253551993256153120/1253583612272574514/Proyecto_nuevo.png?ex=66770af7&is=6675b977&hm=5c84642694ade2ef0d986bb971b08130f432e280f2cf1a5a1a3e97a8d687eb73&" alt="Bootstrap" width="34" height="34"
+          <img src="{% static 'img/LogoPosterin.jpg' %}" alt="Bootstrap" width="34" height="34"
             class="d-inline-block align-text-center" />
           Posterin
         </a>
@@ -84,6 +84,7 @@
       
         
         <div class="container  D-flex  flex-wrap ">
+          
                 {% for x in productos  %}
                 
                  
@@ -95,11 +96,27 @@
                            <span >Descripcion : {{x.descripcion}} </span>
                            <h2>Precio : {{x.precio }}$ </h2>
                            <h2>cod : {{x.codigo }} </h2>
-                         
-                           <a  href="{% url 'agregar' x.codigo %}">Agregar al carrito</a>
+                          
+                           {% if x.existencias == 0 %}
+                             
+                              <h4>Sin Stock</h4>
+                           {% else %}
+                            <a  href="{% url 'agregar' x.codigo %}" style="font-size:40px,   display: block;
+                      width: 115px;
+                      height: 25px;
+                      background: #ff8234;
+                      padding: 10px;
+                      text-align: center;
+                      border-radius: 5px;
+                      color: white;
+                      font-weight: bold;
+                      line-height: 25px;
+                      text-decoration: none;
+                      ">Agregar al carrito</a>
+                           {% endif %}
                         </button>
                         
-                      
+                        
                      
                     
                       
@@ -108,7 +125,7 @@
            
 
 
-              <div class="alert alert-light" role="alert">
+              <div class="alert alert-light" role="alert" style="margin-top: 20px;">
                 <h5>Carrito</h5>
                 <table class="table table-striped table-hover">
                   <thead>
@@ -134,7 +151,17 @@
                         <td style="font-size:13px">{{ value.stock}}</td>
                         <td style="font-size:13px">{{ value.total}}</td>
                         
-                          <td style="font-size:13px"><a href="{% url 'eliminar' value.codigo %}">hola<a></td>
+                          <td style="font-size:13px"> <a href="{% url 'eliminar' value.codigo %}" style="font-size:40px,   display: block;
+                            width: 115px;
+                            height: 25px;
+                            background: #FF0000;
+                            padding: 10px;
+                            text-align: center;
+                            border-radius: 5px;
+                            color: white;
+                            text-decoration: none;
+                            font-weight: bold;
+                            line-height: 25px;">ELIMINAR<a></td>
                       
                       </td>
                       </tr>
@@ -142,38 +169,28 @@
                     {% endfor %}
                   {% else %}
                     <tr>
-                        <td colspan="6">
+                        <td colspan="7">
                             <div class="alert alert-info text-center" style="font-weight: bold;">Sin Productos</div>
                         </td>
                     </tr>
                     {% endif %}
                 </table>
-                {% comment %} <table class="table table-striped table-hover table-bordered border-primary">
-                  <thead>
-                    <tr>
-
-                      <th scope="col">subtotal</th>
-
-                    </tr>
-                  </thead>
-                  {% if request.session.carrito.items %}
-                    {% for key, value in request.session.carrito.items %}  
-                      <tr>
-                      <td style="font-size:13px"></td>
-                      </tr>
-                    
-                    {% endfor %}
-                  {% else %}
-                    <tr>
-                        <td >
-                        -----------------------------------
-                   
-                    </tr>
-                  
+            
+                {% if request.session.carrito.items%}
+                <a href=" {% url 'generarboleta' %}" style="font-size:40px,   display: block;
+                      width: 115px;
+                      height: 25px;
+                      background: #2934cc;
+                      padding: 10px;
+                      text-align: center;
+                      border-radius: 5px;
+                      color: white;
+                      text-decoration: none;
+                      font-weight: bold;
+                      line-height: 25px;">Comprar</a>
+                {% else %}
+                    <h4>Ingrese productos</h4>
                     {% endif %}
-                </table> {% endcomment %}
-                <button type="button" class="btn btn-primary">comprar</button>
-                <a href=" {% url 'generarboleta' %}">Comrpar</a>
               </div>
 
 

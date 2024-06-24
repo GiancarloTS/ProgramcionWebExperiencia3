@@ -20,7 +20,7 @@
             <div class="container-fluid">
 
                 <a class="navbar-brand" href="#">
-                    <img src="{% static 'img/posterinLogo.jpg' %}" alt="Bootstrap" width="34" height="34"
+                    <img src="{% static 'img/LogoPosterin.jpg' %}" alt="Bootstrap" width="34" height="34"
                         class="d-inline-block align-text-center" />
                     Posterin
                 </a>
@@ -36,24 +36,30 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'quienes' %}">Quienes Somos</a>
                         </li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{%  url 'pokemon' %}"
-                              >Pokemon</a>
-                          </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'novedades' %}">Novedades</a>
-                        </li>
+                          </li>
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'tienda' %}">
                               Tienda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'perfil' %}">Perfil</a>
-                        </li>
-                        <li class="nav-item">
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{%  url 'contacto' %}"
+                              >Contactanos</a
+                            >
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{%  url 'pokemon' %}"
+                              >Pokemon</a
+                            >
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'perfil' %}">Perfil</a>
+                          </li>
+                          <li class="nav-item">
                             <a class="nav-link" href="{% url 'cerrarsesion' %}">Cerrar sesión</a>
-                        </li>
+                          </li>
                         {% else %}
                         <li class="nav-item">
                             <a class="nav-link active" href="{% url 'registro' %}">Registro</a>

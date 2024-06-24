@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from .forms import ProductoForm, RegistroUsuario 
 from django.contrib.auth.decorators import login_required
-from .models import Producto
+from .models import *
 from . import cart
 import datetime
 
@@ -37,6 +37,9 @@ def eliminarproducto(request, id):
     productoEliminado = Producto.objects.get(codigo=id) #similar a select * from... where...
     productoEliminado.delete()
     return redirect ('productos')
+
+
+
 
 @login_required
 def modificar(request, id): 
@@ -114,6 +117,7 @@ def generarboleta(request):
             detalle = detalle_boleta(id = boletaV, id_producto = producto, cantidad = cant, subtotal = subtotal)
             detalle.save()
             productos.append(detalle)
+            restarstock(key,cant)
     datos={
         'productos':productos,
         'fecha':boletaV.fechaCompra,
@@ -122,7 +126,15 @@ def generarboleta(request):
     request.session['boleta'] = boletaV.id
     carrito = cart.carrito(request)
     carrito.limpiar()
+    
     return render(request, 'boleta.html',datos)
+
+
+def restarstock(id,cantidad):
+        stock_restado = Producto.objects.get(codigo=id)
+        stock_restado.existencias = stock_restado.existencias - cantidad
+        stock_restado.save()
+        
     # ----------------------------------------------------
 
 
