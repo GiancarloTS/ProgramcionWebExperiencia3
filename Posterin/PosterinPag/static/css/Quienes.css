@@ -1,0 +1,79 @@
+#cuerpo{
+    background: linear-gradient(to bottom, #c71485, #6b6bff);
+    font-family: "Anybody", sans-serif;
+}
+header{
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+}
+
+svg{
+    margin-left: 10px;
+}
+il{
+   margin: 30px;
+}
+footer{
+background-color: rgb(33, 33, 33);
+color: white;
+padding: 7px;
+}
+#carouselExample{
+   display: contents;
+}
+
+#pie{
+    font-style: italic;
+    margin:8px;
+}
+.nav-link{
+font-size: 16px;
+margin-left: 10px;
+
+}
+
+#Titulo{
+    font-size: 6em;
+}
+#Borde_texto_mision{
+    box-shadow: 10px -5px 35px  rgba(0, 0, 0, 0.74);
+}
+
+#Borde_imagen_mision{
+    box-shadow: -10px 5px 35px rgba(0, 0, 0, 0.74);
+}
+#Borde_texto_vision{
+    box-shadow: 10px -5px 35px  rgba(0, 0, 0, 0.74);
+}
+
+#Borde_imagen_vision{
+    box-shadow: -10px 5px 35px rgba(0, 0, 0, 0.74);
+}
+
+#Borde_texto_acerca{
+    box-shadow: 10px 5px 35px  rgba(0, 0, 0, 0.74);
+}
+
+#Borde_imagen_acerca{
+    box-shadow: -10px -5px 35px  rgba(0, 0, 0, 0.74);
+}
+
+#Borde_texto_ubicacion{
+    box-shadow: 0px 0px 20px black;
+}
+
+#Borde_imagen_ubicacion{
+    box-shadow: 0px 0px 20px black;
+}
+
+#Boton_ubicacion{
+    background-color: #6b6bff;
+    
+    font-weight:bolder ;
+    
+}
+
+#Borde_video{
+    box-shadow: 0px 0px 20px black;
+}
