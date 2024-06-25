@@ -71,6 +71,12 @@
               <a class="nav-link" href="{% url 'iniciosesion' %}">Inicio sesión</a>
             </li>
             {% endif %}
+
+            {% if user.is_staff %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'productos' %}">Panel Admin</a>
+                </li>
+            {% endif%}
           </ul>
         </div>
       </div>

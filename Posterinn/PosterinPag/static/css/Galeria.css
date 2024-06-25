@@ -14,7 +14,7 @@ footer{
     color: white;
     padding: 7px;
     display: block;
-    /* position: absolute; */
+    position: fixed; 
     bottom: 0;
     width: 100%;
     

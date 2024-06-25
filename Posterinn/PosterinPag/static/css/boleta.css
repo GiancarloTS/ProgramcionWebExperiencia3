@@ -13,9 +13,13 @@ svg{
 }
 
 footer{
-background-color: rgb(33, 33, 33);
-color: white;
-padding: 7px;
+    background-color: rgb(33, 33, 33);
+    color: white;
+    padding: 7px;
+    display: block;
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
 }
 #carouselExample{
    display: contents;
